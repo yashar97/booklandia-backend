@@ -2,11 +2,17 @@ import express from 'express'
 import dotenv from 'dotenv'
 
 import conectarDB from './config/db.js';
+import usuarioRouter from './routes/usuarioRoutes.js';
 
 dotenv.config();
 const app = express();
 conectarDB();
 
-const port = process.env.PORT;
+app.use(express.json());
 
+app.use('/api/usuarios', usuarioRouter);
+
+
+
+const port = process.env.PORT;
 app.listen(port, () => console.log('servidor listo'));
