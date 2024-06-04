@@ -1,5 +1,5 @@
 import Usuario from "../models/Usuario.js"
-import { verificarJWT } from "../utils/JWT.js";
+import { verificarJWT } from "../utils/JWT.js"
 
 export const checkAuth = async (req, res, next) => {
 
