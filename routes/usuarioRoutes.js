@@ -4,7 +4,7 @@ import { checkAuth } from '../middleware/checkAuth.js';
 
 const router = Router();
 
-// rutas publicas 
+// rutas publicas
 router.post('/registro', registro);
 router.post('/login', login);
 router.get('/confirmar/:token', confirmar);

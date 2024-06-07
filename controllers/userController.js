@@ -2,7 +2,7 @@ import Usuario from '../models/Usuario.js';
 import uuid4 from 'uuid4';
 import { hashearPassword, checkPassword } from '../utils/bcrypt.js'
 import { generarJWT } from '../utils/JWT.js';
-import { enviarEmailRegistro } from '../utils/enviarEmails.js'
+import { enviarEmailRegistro, enviarEmailInstrucciones } from '../utils/enviarEmails.js'
 
 
 export const registro = async (req, res) => {
@@ -26,7 +26,6 @@ export const registro = async (req, res) => {
         return res.json({ msg: 'Registro exitoso' });
 
     } catch (error) {
-        console.log(error.message)
         return res.status(500).json({ msg: 'Error en el servidor' });
     }
 
@@ -58,7 +57,6 @@ export const login = async (req, res) => {
         return res.json(usuarioAutenticado);
 
     } catch (error) {
-        console.log(error.message)
         return res.status(500).json({ msg: 'Error en el servidor' });
     }
 }
@@ -96,6 +94,8 @@ export const cambiarPassword = async (req, res) => {
         }
 
         // enviar correo con instrucciones para recuperar la contraseña
+        await enviarEmailInstrucciones(existeUsuario);
+
         return res.json({ msg: 'Se enviaron instrucciones al email' });
 
     } catch (error) {
@@ -121,7 +121,6 @@ export const actualizarPassword = async (req, res) => {
 
 
     } catch (error) {
-        console.log(error)
         return res.status(500).json({ msg: 'Error en el servidor' });
     }
 }
