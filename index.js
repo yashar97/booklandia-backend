@@ -31,5 +31,5 @@ app.use('/api/usuarios', usuarioRouter);
 app.use('/api/libros', librosRouter);
 
 
-const port = process.env.PORT;
+const port = process.env.PORT || 8080;
 app.listen(port, () => console.log('servidor listo'));
